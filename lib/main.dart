@@ -1,3 +1,4 @@
+import 'package:attendance_manager_app/classpage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -68,7 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: <Widget>[
                         FlatButton(
                           child: const Text('OPEN'),
-                          onPressed: () {/* ... */},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MyApp1()),
+                            );
+                          },
                         ),
                       ],
                     ),
