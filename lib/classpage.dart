@@ -98,7 +98,23 @@ class StudentList extends StatelessWidget {
     return ListView.builder(
       itemCount: students.length ,
       itemBuilder: (_,index){
-      return Text(students[index].id + students[index].name);
+      return  Card(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                     ListTile(
+                      leading: Icon(Icons.album),
+                      title: Text(students[index].name),
+                      subtitle: Text(students[index].id),
+                      trailing: Checkbox(onChanged: (value){
+                        setState(){
+                          value = false;
+                        }
+                      },value: true,),
+                    ),
+                  ],
+                ),
+              );
     });
   }
 }
