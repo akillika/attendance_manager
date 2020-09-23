@@ -1,25 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 /// This Widget is the main application widget.
-class MyApp1 extends StatelessWidget {
-  static const String _title = 'CSE _ Section';
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      theme: ThemeData(
-        primarySwatch: Colors.brown,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
-        body: MyStatefulWidget(),
-      ),
-    );
-  }
-}
-
 class LabeledCheckbox extends StatelessWidget {
   const LabeledCheckbox({
     this.label,
@@ -57,6 +41,17 @@ class LabeledCheckbox extends StatelessWidget {
   }
 }
 
+class Student{
+  final String id;
+  final String name;
+  Student({this.id,this.name});
+  factory Student.fromjson(Map<String,dynamic> json){
+    return Student(
+      id: json['StudentId'] as String,
+      name: json['StudentName'] as String,
+    );
+  }
+}
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key}) : super(key: key);
 
@@ -65,75 +60,45 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  http.Response response;
+  Future<http.Response> getData(http.Client client) async {
+   return client.get('https://peciis.info/PECMIS/APIs/GetStudentIdName.php');    
+  }
+ List<Student> parsejson(String responseBody){
+   final parsed = json.decode(responseBody).cast<Map<String,dynamic>>();
+   return parsed.map<Student>((json)=>Student.fromjson(json)).toList();
+ }
+ Future<List<Student>> fetchjson(http.Client client) async {
+   final response = await client.get('https://peciis.info/PECMIS/APIs/GetStudentIdName.php');
+   return parsejson(response.body);
+ }
   bool _isSelected = false;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          LabeledCheckbox(
-            label: 'Michael',
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            value: _isSelected,
-            onChanged: (bool newValue) {
-              setState(() {
-                _isSelected = newValue;
-              });
-            },
-          ),
-          LabeledCheckbox(
-            label: 'Michael',
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            value: _isSelected,
-            onChanged: (bool newValue) {
-              setState(() {
-                _isSelected = newValue;
-              });
-            },
-          ),
-          LabeledCheckbox(
-            label: 'Michael',
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            value: _isSelected,
-            onChanged: (bool newValue) {
-              setState(() {
-                _isSelected = newValue;
-              });
-            },
-          ),
-          LabeledCheckbox(
-            label: 'Michael',
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            value: _isSelected,
-            onChanged: (bool newValue) {
-              setState(() {
-                _isSelected = newValue;
-              });
-            },
-          ),
-          LabeledCheckbox(
-            label: 'Michael',
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            value: _isSelected,
-            onChanged: (bool newValue) {
-              setState(() {
-                _isSelected = newValue;
-              });
-            },
-          ),
-          LabeledCheckbox(
-            label: 'Michael',
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            value: _isSelected,
-            onChanged: (bool newValue) {
-              setState(() {
-                _isSelected = newValue;
-              });
-            },
-          ),
-        ],
-      ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: FutureBuilder<List<Student>>(
+        future: fetchjson(http.Client()),
+        builder: (_,snapshot){
+          if(snapshot.hasError) print(snapshot.error);
+          return snapshot.hasData
+          ? StudentList(students: snapshot.data)
+          : Center(child: CircularProgressIndicator());
+        },
+      )
     );
+  }
+}
+class StudentList extends StatelessWidget {
+  final List<Student> students;
+  StudentList({Key key, this.students}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: students.length ,
+      itemBuilder: (_,index){
+      return Text(students[index].id + students[index].name);
+    });
   }
 }

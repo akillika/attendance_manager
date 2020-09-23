@@ -2,6 +2,8 @@ import 'package:attendance_manager_app/classpage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'classpage.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -72,89 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => MyApp1()),
+                              MaterialPageRoute(builder: (context) => MyStatefulWidget()),
                             );
                           },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.album),
-                      title: Text('Computer Science Engg'),
-                      subtitle: Text('Section A'),
-                    ),
-                    ButtonBar(
-                      children: <Widget>[
-                        FlatButton(
-                          child: const Text('OPEN'),
-                          onPressed: () {/* ... */},
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.album),
-                      title: Text('Computer Science Engineering'),
-                      subtitle: Text('Section A'),
-                    ),
-                    ButtonBar(
-                      children: <Widget>[
-                        FlatButton(
-                          child: const Text('OPEN'),
-                          onPressed: () {/* ... */},
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.album),
-                      title: Text('Computer Science Engineering'),
-                      subtitle: Text('Section A'),
-                    ),
-                    ButtonBar(
-                      children: <Widget>[
-                        FlatButton(
-                          child: const Text('OPEN'),
-                          onPressed: () {/* ... */},
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.album),
-                      title: Text('Computer Science Engineering'),
-                      subtitle: Text('Section A'),
-                    ),
-                    ButtonBar(
-                      children: <Widget>[
-                        FlatButton(
-                          child: const Text('OPEN'),
-                          onPressed: () {/* ... */},
                         ),
                       ],
                     ),
