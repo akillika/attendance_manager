@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "591374303835",
+    "firebase_url": "https://attendance-manager-pec.firebaseio.com",
+    "project_id": "attendance-manager-pec",
+    "storage_bucket": "attendance-manager-pec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591374303835:android:c8099b1f87f0273c52357e",
+        "android_client_info": {
+          "package_name": "com.example.attendance_manager_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "591374303835-np0qdb7dk328or6060a63qpf95s67ncg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrxx3SXDOk1wXKdHXG1Kn-txxSmFIycr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "591374303835-np0qdb7dk328or6060a63qpf95s67ncg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

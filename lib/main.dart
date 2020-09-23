@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     const ListTile(
                       leading: Icon(Icons.album),
-                      title: Text('Computer Science Engineering'),
+                      title: Text('Computer Science Engg'),
                       subtitle: Text('Section A'),
                     ),
                     ButtonBar(
