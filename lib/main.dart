@@ -1,4 +1,5 @@
 import 'package:attendance_manager_app/classpage.dart';
+import 'package:attendance_manager_app/demo.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -74,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => MyStatefulWidget()),
+                              MaterialPageRoute(builder: (context) => ClassPage()),
                             );
                           },
                         ),
@@ -87,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed:() => Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Demopage() ))),
     );
   }
 }
